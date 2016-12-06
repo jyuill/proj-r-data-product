@@ -1,5 +1,6 @@
 ## BASIC EXAMPLE
 ## file must be ui.R to run!
+## should go with server-2.R (which must be server.R to run!)
 
 library(shiny)
 

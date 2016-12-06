@@ -1,11 +1,12 @@
 ### BASIC UI EXAMPLE
-## NEED TO CHANGE FILE NAME TO ui.R TO RUN!!!
+## File name needs to be ui.R TO RUN!!!
+## Need server.R file in SAME FOLDER!!!
 ## careful with commas !
 
 library(shiny)
 
 shinyUI(pageWithSidebar(
-  headerPanel("Input Example"),
+  headerPanel("Basic Example"),
   sidebarPanel(
     h3('Sidebar text')
   ),
