@@ -14,7 +14,13 @@ shinyUI(pageWithSidebar(
     dateInput("date","Date:")
   ),
   mainPanel(
-    
+    h3('Outputs - inputs are supposed to show up here :['),
+    h3('You entered'),
+    verbatimTextOutput("oid1"),
+    h4('You entered'),
+    verbatimTextOutput("oid2"),
+    h4('You entered'),
+    verbatimTextOutput("odate")
   )
 )
 )
