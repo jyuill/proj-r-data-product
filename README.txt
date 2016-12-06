@@ -1,5 +1,4 @@
-# proj-r-data-product
-Developing data products using R shiny etc
+Using R shiny server for interactive graphics etc
 
 Based on Coursera course: 'Developing Data Products'
 
