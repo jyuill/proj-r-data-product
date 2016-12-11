@@ -1,0 +1,49 @@
+---
+title: "Plot Test: Google Vis"
+author: "John Yuill"
+date: "December 11, 2016"
+output: html_document
+---
+
+## PURPOSE
+* test out Google Vis package
+
+## EXAMPLES
+
+
+## Google Viz
+
+```{r setOptions, message=FALSE}
+library(googleVis)
+op <- options(gvis.plot.tag='chart')
+```
+
+
+```{r ComboExample, results='asis', tidy=TRUE}
+## Add the mean
+CityPopularity$Mean=mean(CityPopularity$Popularity)
+
+CC <- (CityPopularity,
+       xvar='City', yvar=c('Mean', 'Popularity'),
+       options=list(seriesType='bars',
+                    width=450, height=300,
+                    title='City Popularity',
+                    series='{0: {type:\"line\"}}'))
+
+plot(CC)
+
+```
+
+#### Pros
+* Well-developed Google chart library
+
+#### Cons
+* displays in browser, not R plot window
+* doesn't directly integrate with R Markdown HTML docs - fidgetly to get it to work
+
+## Conclusion
+
+* ggplot for exploration within R and for static charts in R markdown
+* get up to speed with more ggvis, as it is likely future of R graphics
+* get up to speed on shiny + ggvis
+* keep plotly in mind for situations that may arise

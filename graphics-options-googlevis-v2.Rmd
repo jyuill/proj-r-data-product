@@ -1,0 +1,51 @@
+---
+title: "Plot Test: Google Vis"
+author: "John Yuill"
+date: "December 11, 2016"
+output: html_document
+---
+
+## PURPOSE
+* test out Google Vis package
+
+## EXAMPLES
+
+
+## Google Viz
+
+```{r setOptions, message=FALSE}
+library(googleVis)
+op <- options(gvis.plot.tag='chart')
+```
+
+```{r scatterexample, results='asis', tidy=FALSE, echo=FALSE, message=FALSE}
+
+mtdm2 <- mtcars[,c(1,3)]
+scatter <- gvisScatterChart(mtdm2,
+                            options=list(
+                              pointSize=2,
+                              width=400,
+                              height=400,
+                              legend="none"
+                   
+                 )
+                 )
+#plot(scatter)
+#scatter
+print(scatter, 'chart')
+
+```
+
+#### Pros
+* Well-developed Google chart library
+
+#### Cons
+* displays in browser, not R plot window
+* doesn't directly integrate with R Markdown HTML docs - fidgetly to get it to work
+
+## Conclusion
+
+* ggplot for exploration within R and for static charts in R markdown
+* get up to speed with more ggvis, as it is likely future of R graphics
+* get up to speed on shiny + ggvis
+* keep plotly in mind for situations that may arise

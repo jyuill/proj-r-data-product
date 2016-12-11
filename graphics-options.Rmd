@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
   message=FALSE,
   warning=FALSE
 )
+library(dplyr)
 
 ```
 
@@ -25,6 +26,7 @@ knitr::opts_chunk$set(
 library(plotly)
 library(ggplot2)
 library(ggvis)
+library(googleVis)
 
 ```
 
@@ -101,9 +103,37 @@ plot_ly(mtcars, x = ~disp, y = ~mpg)
 * embed in R Markdown HTML for limited interactivity
 * possibly with shiny
 
+## 4. Google Viz
+
+```{r setOptions, message=FALSE}
+op <- options(gvis.plot.tag='chart')
+```
+
+```{r results='asis'}
+mtdm <- mtcars %>% select(disp,mpg)
+scatter <- gvisScatterChart(mtdm,
+                            options=list(
+                              pointSize=2,
+                              width=400,
+                              height=400,
+                              legend="none"
+                   
+                 )
+                 )
+plot(scatter)
+#print(scatter, 'chart')
+```
+
+#### Pros
+* Well-developed Google chart library
+
+#### Cons
+* displays in browser, not R plot window
+* doesn't directly integrate with R Markdown HTML docs - fidgetly to get it to work
+
 ## Conclusion
 
-- ggplot for exploration within R and for static charts in R markdown
-- get up to speed with more ggvis, as it is likely future of R graphics
-- get up to speed on shiny + ggvis
-- keep plotly in mind for situations that may arise
+* ggplot for exploration within R and for static charts in R markdown
+* get up to speed with more ggvis, as it is likely future of R graphics
+* get up to speed on shiny + ggvis
+* keep plotly in mind for situations that may arise
