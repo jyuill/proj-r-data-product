@@ -100,3 +100,10 @@ plot_ly(mtcars, x = ~disp, y = ~mpg)
 
 * embed in R Markdown HTML for limited interactivity
 * possibly with shiny
+
+## Conclusion
+
+- ggplot for exploration within R and for static charts in R markdown
+- get up to speed with more ggvis, as it is likely future of R graphics
+- get up to speed on shiny + ggvis
+- keep plotly in mind for situations that may arise
