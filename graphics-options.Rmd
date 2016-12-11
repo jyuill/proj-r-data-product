@@ -1,0 +1,102 @@
+---
+title: "Plot Tests"
+author: "John Yuill"
+date: "December 11, 2016"
+output: html_document
+---
+
+## PURPOSE
+* compare major graphing options
+
+```{r, include=FALSE}
+## set global options
+knitr::opts_chunk$set(
+  echo=FALSE,
+  error=FALSE,
+  message=FALSE,
+  warning=FALSE
+)
+
+```
+
+* Load required libraries
+
+```{r, echo=TRUE}
+library(plotly)
+library(ggplot2)
+library(ggvis)
+
+```
+
+## EXAMPLES
+
+### 1. ggplot2
+
+```{r, echo=FALSE}
+ggplot(mtcars, aes(x=disp,y=mpg))+geom_point()
+
+```
+
+#### Pros
+
+* super-control over plot features and format
+* uses grammar of graphics
+* lots of usage and support
+* good skill level already attained, with lots of home-made examples
+
+#### Cons
+
+* no further 'official' development - basically abandoned in favour of ggvis
+* no built-in interactivity
+* can be cumbersome code
+* can't easily download
+
+#### Use
+
+* static charts, including R Markdown HTML files
+* maybe with Shiny, but probably choose alternatives below
+
+### 2. ggvis
+
+```{r}
+ggvis(mtcars, x = ~disp, y = ~mpg)
+
+```
+
+#### Pros
+
+* designed for more interactivity than ggplot2 (although require shiny)
+* defaults to cleaner style than ggplot2
+* takes advantage of pipe (%>%) and integrates with dplyr
+* easy export/download
+
+#### Cons
+
+* interactivity requires Shiny
+
+#### Use
+
+* in shiny apps
+
+### 3. Plotly
+
+```{r}
+plot_ly(mtcars, x = ~disp, y = ~mpg)
+
+```
+
+#### Pros
+
+* full-on library of interactive charts
+* can embed charts with some interactivity in R Markdown HTML files
+
+#### Cons
+
+* interactivity is limited to zooming, hover labels (which is cool but not sufficient)
+* for shiny, requires library on shiny server - compatible version
+* recent update (v4.0) not backwards compatible, breaking older charts
+
+#### Use
+
+* embed in R Markdown HTML for limited interactivity
+* possibly with shiny
