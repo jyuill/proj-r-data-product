@@ -1,0 +1,27 @@
+---
+title: "rCharts-test"
+author: "John Yuill"
+date: "December 11, 2016"
+output: html_document
+---
+
+```{r set-options, echo=FALSE, cache=FALSE}
+options(RCHART_WIDTH=500, RCHART_HEIGHT=400)
+library(rCharts)
+
+```
+
+## rCharts
+
+
+```{r, echo=FALSE, cache=TRUE, results='asis', comment=NA}
+
+r1 <- rPlot(data=mtcars, mpg ~ disp, type="point", color="gear")
+# r1 # to see plot in R Studio Viewer
+ r1$print("chart1", include_assets = TRUE) # to print out full HTML that can be embedded in a page
+
+
+
+```
+
+

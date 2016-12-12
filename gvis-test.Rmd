@@ -5,16 +5,40 @@ date: "December 11, 2016"
 output: html_document
 ---
 
+* Example taken directly from <https://cran.r-project.org/web/packages/googleVis/vignettes/Using_googleVis_with_knitr.html>
+* Charts can be previewed by running code (not full Markdown) in R studio 
+* For R Markdown, need to view in BROWSER
 
-```{r setOptions, message=FALSE}
+```{r setOptions, message=FALSE, cache=FALSE }
 library(googleVis)
 op <- options(gvis.plot.tag='chart')
 ```
+
+## Simple example - same as used in 'graphics-options' file
+```{r scatterexample, results='asis', echo=FALSE, comments=NA}
+
+mtdm2 <- mtcars[,c(1,3)]
+scatter <- gvisScatterChart(mtdm2,
+                            options=list(
+                              pointSize=2,
+                              width=400,
+                              height=400,
+                              legend="none"
+                   
+                 )
+                 )
+plot(scatter) # works in browser but not markdown :(
+
+```
+
+***
+### Online examples from link above...
+
 The following plot statements will automatically return  the HTML
 required for the 'knitted' output. 
 
 ## Combo chart
-```{r ComboExample, results='asis', tidy=FALSE}
+```{r ComboExample, results='asis', tidy=FALSE, echo=FALSE, cache=TRUE, comment=NA}
 ## Add the mean
 CityPopularity$Mean=mean(CityPopularity$Popularity)
 CC <- gvisComboChart(CityPopularity, xvar='City',
@@ -27,7 +51,7 @@ plot(CC) # works in browser; supposed to work in Markdown, accordingly to exampl
 #CC # doesn't work
 #print(CC) # doesn't work
 ```
-Example of gvisComboChart with R code shown above.
+Example of gvisComboChart with R code shown above. (If no chart visible: doesn't work)
 
 ## Place two charts next to each other
 ```{r gvisMergeExample, results='asis', echo=FALSE}
@@ -35,11 +59,12 @@ Geo <- gvisGeoChart(Exports, locationvar='Country', colorvar='Profit',
                     options=list(height=300, width=350)) 
 Tbl <- gvisTable(Exports, options=list(height=300, width=200))
 plot(gvisMerge(Geo, Tbl, horizontal=TRUE))
-``````
-Example of a gvisGeoChart with gvisTable and R code hidden.
+```
+
+Example of a gvisGeoChart with gvisTable and R code hidden. (If no chart visible: doesn't work)
 
 
-```{r resetOptions}
+```{r resetOptions, echo=FALSE}
 ## Set options back to original options
 options(op)
 ```

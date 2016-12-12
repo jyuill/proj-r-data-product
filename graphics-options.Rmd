@@ -20,13 +20,15 @@ library(dplyr)
 
 ```
 
-* Load required libraries
+* Load required chart libraries
 
 ```{r, echo=TRUE}
 library(plotly)
 library(ggplot2)
 library(ggvis)
 library(googleVis)
+library(rCharts)
+
 
 ```
 
@@ -34,7 +36,7 @@ library(googleVis)
 
 ### 1. ggplot2
 
-```{r, echo=FALSE}
+```{r}
 ggplot(mtcars, aes(x=disp,y=mpg))+geom_point()
 
 ```
@@ -105,31 +107,68 @@ plot_ly(mtcars, x = ~disp, y = ~mpg)
 
 ## 4. Google Viz
 
-```{r setOptions, message=FALSE}
+```{r setOptions, cache=FALSE}
 op <- options(gvis.plot.tag='chart')
 ```
 
-```{r results='asis'}
+```{r results='asis', comments=NA, cache=TRUE}
 mtdm <- mtcars %>% select(disp,mpg)
 scatter <- gvisScatterChart(mtdm,
                             options=list(
                               pointSize=2,
-                              width=400,
-                              height=400,
+                              width=800,
+                              height=500,
                               legend="none"
                    
                  )
                  )
 plot(scatter)
-#print(scatter, 'chart')
+#print(scatter, 'chart') # to get code
 ```
 
 #### Pros
 * Well-developed Google chart library
+* Basic interaction (hover labels, item selection) built-in
 
 #### Cons
-* displays in browser, not R plot window
-* doesn't directly integrate with R Markdown HTML docs - fidgetly to get it to work
+* displays in browser only, not R plot window or R Viewer
+* doesn't directly integrate with R Markdown HTML docs - can be fidgetly to get it to work, only then it only displays in browser - not R Markdown preview
+* various charts may have limited customization options for presentation
+
+#### Use
+* further research but could work in R Markdown docs AND shiny
+
+## 5. rCharts
+
+```{r set-options, echo=FALSE, cache=FALSE}
+options(RCHART_WIDTH=800, RCHART_HEIGHT=500)
+```
+
+```{r, echo=FALSE, cache=TRUE, results='asis', comment=NA}
+
+r1 <- rPlot(data=mtcars, mpg ~ disp, type="point", color="gear")
+# r1 # to see plot in R Studio Viewer
+r1$print("chart1", include_assets = TRUE) # to print out full HTML that can be embedded in a page
+
+```
+
+#### Pros
+
+* collection of chart libraries, including rPlot that is inspired by ggplot2-style
+* works well with R Markdown
+* basic interactivity (hover labels)
+
+#### Cons
+
+* the chart libraries may not be super-flexible, in terms of available presentation options
+* not super-thorough documentation
+* more complex interactions may required Javascript coding
+
+### Use
+
+* tbd with more research but could work for R Markdown and shiny
+* (similar to Google Vis)
+
 
 ## Conclusion
 
@@ -137,3 +176,4 @@ plot(scatter)
 * get up to speed with more ggvis, as it is likely future of R graphics
 * get up to speed on shiny + ggvis
 * keep plotly in mind for situations that may arise
+* experiment with Google Vis and rCharts - esp with R Markdown docs
