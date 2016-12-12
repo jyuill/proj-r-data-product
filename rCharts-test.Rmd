@@ -13,6 +13,7 @@ library(rCharts)
 
 ## rCharts
 
+* example with rPlot library
 
 ```{r, echo=FALSE, cache=TRUE, results='asis', comment=NA}
 
@@ -24,4 +25,11 @@ r1 <- rPlot(data=mtcars, mpg ~ disp, type="point", color="gear")
 
 ```
 
+* example with nPlot library (NVD3)
 
+```{r, echo=FALSE, cache=TRUE, results='asis', comment=NA}
+
+hair_eye_male <- subset(as.data.frame(HairEyeColor), Sex == "Male")
+n1 <- nPlot(Freq ~ Hair, group = "Eye", data = hair_eye_male, type = "multiBarChart")
+n1$print("chart3", include_assets=TRUE)
+```
